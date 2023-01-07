@@ -30,7 +30,9 @@ public class ProductFacade {
         }
         return productDetails;
     }
-
+    /**
+     * @Desc : Save product
+     */
     public RestResponse<ProductDetails> saveProduct(ProductDetails productDetails) {
         try {
             productRepository.save(productDetails);
