@@ -15,4 +15,12 @@ public class ControllerAdviceExceptions {
         errorResponse.setErrorMessage(exception.getErrorMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.PRECONDITION_FAILED);
     }
+
+    @ExceptionHandler(DateFomatException.class)
+    public ResponseEntity<ErrorResponse> dateFormatException(DateFomatException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setErrorCode(HttpStatus.PRECONDITION_FAILED.value());
+        errorResponse.setErrorMessage(exception.getErrorMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.PRECONDITION_FAILED);
+    }
 }
