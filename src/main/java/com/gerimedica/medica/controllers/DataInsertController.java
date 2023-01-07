@@ -1,6 +1,7 @@
 package com.gerimedica.medica.controllers;
 
 import com.gerimedica.medica.csv.CsvExportService;
+import com.gerimedica.medica.exceptions.DateFomatException;
 import com.gerimedica.medica.exceptions.ProductNotFoundException;
 import com.gerimedica.medica.facade.ProductFacade;
 import com.gerimedica.medica.model.ProductDetails;
@@ -25,7 +26,7 @@ public class DataInsertController {
     private CsvExportService csvExportService;
 
     @PostMapping(path = "upload")
-    public ResponseEntity insertProductInfo(@RequestBody ProductDetails productDetails){
+    public ResponseEntity insertProductInfo(@RequestBody ProductDetails productDetails) throws DateFomatException {
         return ResponseEntity.ok().body(productFacade.saveProduct(productDetails));
     }
 

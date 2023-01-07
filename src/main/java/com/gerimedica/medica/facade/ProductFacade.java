@@ -51,7 +51,6 @@ public class ProductFacade {
         } catch (DataIntegrityViolationException uniqueValue){
             return new RestResponse<>().setMessage("Duplicate Entry!!.");
         }catch (Exception e) {
-            e.printStackTrace();
             return new RestResponse<>().setMessage("Failed to Save");
         }
         return new RestResponse<>().setMessage("Success");
