@@ -35,6 +35,7 @@ public class ProductFacade {
         try {
             productRepository.save(productDetails);
         } catch (Exception e) {
+            e.printStackTrace();
             return new RestResponse<>().setMessage("Failed to Save");
         }
         return new RestResponse<>().setMessage("Success");

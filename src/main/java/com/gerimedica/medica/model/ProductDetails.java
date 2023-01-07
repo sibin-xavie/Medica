@@ -3,7 +3,6 @@ package com.gerimedica.medica.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 
 @Entity
 @Table(name = "product_dtls")
@@ -27,9 +26,9 @@ public class ProductDetails implements Serializable {
     @Column(name = "long_desc", length = 255)
     private String longDiscription;
     @Column(name = "from_date",nullable = false,length = 55)
-    private Date fromDate;
+    private String fromDate;
     @Column(name = "to_date", nullable = false, length = 55)
-    private Date toDate;
+    private String toDate;
 
     @Column(name = "sort_prior", nullable = false, length = 4)
     private Integer sortingPriority;
@@ -82,19 +81,19 @@ public class ProductDetails implements Serializable {
         this.longDiscription = longDiscription;
     }
 
-    public Date getFromDate() {
+    public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
 
-    public Date getToDate() {
+    public String getToDate() {
         return toDate;
     }
 
-    public void setToDate(Date toDate) {
+    public void setToDate(String toDate) {
         this.toDate = toDate;
     }
 
