@@ -35,7 +35,7 @@ public class ProductFacade {
     /**
      * @Desc : Save product
      */
-    public RestResponse<ProductDetails> saveProduct(ProductDetails productDetails) {
+    public RestResponse<ProductDetails> saveProduct(ProductDetails productDetails) throws DateFomatException {
         try {
             String fromDate = productDetails.getFromDate();
             String toDate = productDetails.getToDate();
