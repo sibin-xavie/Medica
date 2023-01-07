@@ -5,7 +5,7 @@ import com.gerimedica.medica.model.ProductDetails;
 import com.gerimedica.medica.repository.ProductRepository;
 import com.gerimedica.medica.util.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import  org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,7 +34,9 @@ public class ProductFacade {
     public RestResponse<ProductDetails> saveProduct(ProductDetails productDetails) {
         try {
             productRepository.save(productDetails);
-        } catch (Exception e) {
+        } catch (ConstraintViolationException uniqueValue){
+            return new RestResponse<>().setMessage("Duplicate Entry!!.");
+        }catch (Exception e) {
             e.printStackTrace();
             return new RestResponse<>().setMessage("Failed to Save");
         }
