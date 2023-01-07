@@ -1,9 +1,11 @@
 package com.gerimedica.medica.facade;
 
+import com.gerimedica.medica.exceptions.DateFomatException;
 import com.gerimedica.medica.exceptions.ProductNotFoundException;
 import com.gerimedica.medica.model.ProductDetails;
 import com.gerimedica.medica.repository.ProductRepository;
 import com.gerimedica.medica.util.RestResponse;
+import org.apache.commons.validator.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,16 @@ public class ProductFacade {
      */
     public RestResponse<ProductDetails> saveProduct(ProductDetails productDetails) {
         try {
+            String fromDate = productDetails.getFromDate();
+            String toDate = productDetails.getToDate();
+            boolean isValidFromDate = GenericValidator.isDate(fromDate,"yyyy-MM-dd", true);
+            boolean isValidToDate = GenericValidator.isDate(toDate,"yyyy-MM-dd", true);
+            System.out.println(isValidFromDate);
+            if(!isValidFromDate) {
+                throw new DateFomatException("Invalid from date provided.");
+            } else if(!isValidToDate){
+                throw new DateFomatException("Invalid To date provided.");
+            }
             productRepository.save(productDetails);
         } catch (DataIntegrityViolationException uniqueValue){
             return new RestResponse<>().setMessage("Duplicate Entry!!.");
